@@ -1,5 +1,5 @@
 /*!
- * Objeckt : An object creation and management library also using inheritance as a OOP paradigm.
+ * Objeckt : An Object Creation and Management Library Using Inheritance and Other OOP Paradigms.
  *
  * Copyright (c) 2014 Barış Güler
  * http://hwclass.github.io
@@ -13,4 +13,3 @@
  *
  */
 
- 

@@ -1,4 +1,4 @@
 objeckt
 =======
 
-An object creation and management library also using inheritance as a OOP paradigm.
+Objeckt : An Object Creation and Management Library Using Inheritance and Other OOP Paradigms.
