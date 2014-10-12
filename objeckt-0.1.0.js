@@ -15,32 +15,32 @@
 
 var objeckt = (function(w, undefined) {
 
-	var objects = [];
+  var objects = [];
 
-	var getObject = function ( object ) {
-		return objects[object];
-	};
+  var getObject = function ( object ) {
+  	return objects[object];
+  };
 
-	var createObject = function ( alias ) {};
+  var createObject = function ( alias ) {};
 
-	var inheritObject = function ( subObject, superObject ) {
-		return Object.create(superObject, subObject);
-	}
+  var inheritObject = function ( subObject, superObject ) {
+  	return Object.create(superObject, subObject);
+  }
 
-	var defineProp = function ( obj, key, value ){
+  var defineProp = function ( obj, key, value ){
     var config = {
-			value: value,
-			writable: true,
-			enumerable: true,
-			configurable: true
+  		value: value,
+  		writable: true,
+  		enumerable: true,
+  		configurable: true
     };
     Object.defineProperty( obj, key, config );
-	};
+  };
 
-	return {
-		get : getObject,
-		create : createObject,
-		inherit : inheritObject
-	}
+  return {
+  	get : getObject,
+  	create : createObject,
+  	inherit : inheritObject
+  }
 
 })(window);
