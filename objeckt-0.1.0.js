@@ -17,21 +17,24 @@ var objeckt = (function(w, undefined) {
 
   var objects = [];
 
-  var getObject = function ( object ) {
+  var getObject = function (object) {
     return objects[object];
   };
 
-  var createObject = function ( alias ) {};
+  var createObject = function (alias) {};
 
   var inheritObject = function (target, superObjects) {
-   for (var counter = 0, len=superObjects.length; counter < len; counter++) {
-      if (!isNull(superObjects[counter]) && !isUndefined(superObjects[counter])) {
-        var propertyNames = Object.getOwnPropertyNames(superObjects[counter]);
-        for (var counter2 = 0, len2 = Object.keys(superObjects[counter]).length; counter2 < len2; counter2++) {
-          var propertyName = propertyNames[counter2];
-          defineProp(target, propertyNames[counter2], superObjects[counter][propertyName]);
+    if (!isUndefined(target) && !isNull(target) && isObject(target)) {
+      for (var counter = 0, len=superObjects.length; counter < len; counter++) {
+        if (!isNull(superObjects[counter]) && !isUndefined(superObjects[counter])) {
+          var propertyNames = Object.getOwnPropertyNames(superObjects[counter]);
+          for (var counter2 = 0, len2 = Object.keys(superObjects[counter]).length; counter2 < len2; counter2++) {
+            var propertyName = propertyNames[counter2];
+            defineProp(target, propertyNames[counter2], superObjects[counter][propertyName]);
+          }
         }
       }
+      objects.push(target);
     }
   }
 
@@ -53,7 +56,12 @@ var objeckt = (function(w, undefined) {
     return (typeof obj === 'undefined' ? true : false);
   };
 
+  var isObject = function (obj) {
+    return (typeof obj === 'object' ? true : false);
+  }
+
   return {
+    objects : objects,
     get : getObject,
     create : createObject,
     inherit : inheritObject
