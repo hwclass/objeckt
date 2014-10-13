@@ -23,18 +23,34 @@ var objeckt = (function(w, undefined) {
 
   var createObject = function ( alias ) {};
 
-  var inheritObject = function ( subObject, superObject ) {
-    return Object.create(superObject, subObject);
+  var inheritObject = function (target, superObjects) {
+   for (var counter = 0, len=superObjects.length; counter < len; counter++) {
+      if (!isNull(superObjects[counter]) && !isUndefined(superObjects[counter])) {
+        var propertyNames = Object.getOwnPropertyNames(superObjects[counter]);
+        for (var counter2 = 0, len2 = Object.keys(superObjects[counter]).length; counter2 < len2; counter2++) {
+          var propertyName = propertyNames[counter2];
+          defineProp(target, propertyNames[counter2], superObjects[counter][propertyName]);
+        }
+      }
+    }
   }
 
-  var defineProp = function ( obj, key, value ){
+  var defineProp = function (obj, key, value){
     var config = {
       value: value,
       writable: true,
       enumerable: true,
       configurable: true
     };
-    Object.defineProperty( obj, key, config );
+    Object.defineProperty(obj, key, config);
+  };
+
+  var isNull = function (obj) {
+    return (typeof obj === null ? true : false);
+  };
+
+  var isUndefined = function (obj) {
+    return (typeof obj === 'undefined' ? true : false);
   };
 
   return {
@@ -42,5 +58,5 @@ var objeckt = (function(w, undefined) {
     create : createObject,
     inherit : inheritObject
   }
-  
+
 })(window);
