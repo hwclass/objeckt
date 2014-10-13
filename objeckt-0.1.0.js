@@ -15,14 +15,31 @@
 
 var objeckt = (function(w, undefined) {
 
+  /**
+   * objects <Array> contains the objects that are initialized by inheritObject method
+   *
+   */
   var objects = [];
 
+  /**
+   * getObject() returns an object with given parameter
+   *
+   * @return <Object>
+   */
   var getObject = function (object) {
     return objects[object];
   };
 
+  /**
+   * createObject() creates object
+   *
+   */
   var createObject = function (alias) {};
 
+  /**
+   * inheritObject() extends object(s) into given target object
+   *
+   */
   var inheritObject = function (target, superObjects) {
     if (!isUndefined(target) && !isNull(target) && isObject(target)) {
       for (var counter = 0, len=superObjects.length; counter < len; counter++) {
@@ -38,6 +55,10 @@ var objeckt = (function(w, undefined) {
     }
   }
 
+  /**
+   * defineProp() sets a property for the given object with key and value
+   *
+   */
   var defineProp = function (obj, key, value){
     var config = {
       value: value,
@@ -48,20 +69,34 @@ var objeckt = (function(w, undefined) {
     Object.defineProperty(obj, key, config);
   };
 
+  /**
+   * isNull() returns true or false if the given object is null or not
+   *
+   * @return <boolean>
+   */
   var isNull = function (obj) {
     return (typeof obj === null ? true : false);
   };
 
+  /**
+   * isUndefined() returns true or false if the given object is undefined or not
+   *
+   * @return <boolean>
+   */
   var isUndefined = function (obj) {
     return (typeof obj === 'undefined' ? true : false);
   };
 
+  /**
+   * isObject() returns true or false if the given object is an object or not
+   *
+   * @return <boolean>
+   */
   var isObject = function (obj) {
     return (typeof obj === 'object' ? true : false);
   }
 
   return {
-    objects : objects,
     get : getObject,
     create : createObject,
     inherit : inheritObject
