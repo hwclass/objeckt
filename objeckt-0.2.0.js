@@ -44,8 +44,7 @@ var objeckt = (function(w, undefined) {
     if (!isUndefined(target) && !isNull(target) && isObject(target)) {
       var propertyNames = Object.getOwnPropertyNames(mixin);
       for (var counter = 0, len=Object.keys(mixin).length; counter < len; counter++) {
-        var propertyName = propertyNames[counter];
-        defineProp(target, mixin[propertyName], mixin[propertyName]['value']);
+        defineProp(target, propertyNames[counter], mixin[propertyName]['value']);
       }
     }
   };
